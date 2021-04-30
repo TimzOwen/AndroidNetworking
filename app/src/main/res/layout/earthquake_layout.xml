@@ -3,13 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="16dp"
     android:minHeight="18dp"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvMag"
-        android:text="@string/_5_2"
+        tools:text="@string/_5_2"
         android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -17,7 +18,7 @@
 
     <TextView
         android:id="@+id/tvLocation"
-        android:text="@string/nigeria"
+        tools:text="@string/nigeria"
         android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_weight="1"
@@ -25,7 +26,7 @@
 
     <TextView
         android:id="@+id/tvDate"
-        android:text="@string/_20th_march"
+        tools:text="@string/_20th_march"
         android:layout_weight="1"
         android:textSize="18sp"
         android:textAlignment="textEnd"
