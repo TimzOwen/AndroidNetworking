@@ -5,9 +5,9 @@ Topics covered:
 
   JSON for Android
   
-  Feteching data  and parsing JSON in it
+  Fetching data  and parsing JSON in it
   
-  Android Threads and Multithreadind
+  Android Threads and Multithreading
   
   HTTPs and Retrofit for Android
   
