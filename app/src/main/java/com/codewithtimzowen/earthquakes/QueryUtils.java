@@ -41,18 +41,33 @@ public final class QueryUtils {
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<EarthQuakes> earthquakes = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
+
         try {
 
-            // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
-            // build up a list of Earthquake objects with the corresponding data.
+            // create a Json Object response
+            JSONObject baseJsonObject = new JSONObject(SAMPLE_JSON_RESPONSE);
+
+            //Get the features array
+            JSONArray earthquakeArray = baseJsonObject.getJSONArray("features");
+
+            //Loop through all elements in the array
+            for (int i = 0; i < earthquakeArray.length(); i ++){
+                //Get JSON Object at the specified index
+                JSONObject currentEarthquake = earthquakeArray.getJSONObject(i);
+                //Get the JSON Object with JSON properties
+                JSONObject properties = currentEarthquake.getJSONObject("properties");
+                // Find individual Strings
+                String magnitude = properties.getString("mag");
+                String location = properties.getString("location");
+                String time = properties.getString("time");
+
+                //create a new object from the three strings
+                EarthQuakes earthQuakes = new EarthQuakes(magnitude,location,time);
+                earthquakes.add(earthQuakes);
+            }
 
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
+           .
             Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
         }
 
