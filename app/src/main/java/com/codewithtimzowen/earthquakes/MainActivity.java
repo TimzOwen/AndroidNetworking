@@ -43,5 +43,6 @@ public class MainActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.list_view);
 
         lv.setAdapter(earthQuakeAdapter);
+        
     }
 }
