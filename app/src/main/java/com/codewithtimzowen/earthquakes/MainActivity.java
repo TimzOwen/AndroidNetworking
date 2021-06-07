@@ -26,4 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO
     // implement the Do in background Async Task
+    // onProgress update
+    // Genereics--> Strings Void , Event
 }
