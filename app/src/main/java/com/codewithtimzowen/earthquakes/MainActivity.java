@@ -1,7 +1,6 @@
 package com.codewithtimzowen.earthquakes;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -24,4 +23,7 @@ public class MainActivity extends AppCompatActivity {
         lv.setAdapter(earthQuakeAdapter);
         
     }
+
+    // TODO
+    // implement the Do in background Async Task
 }

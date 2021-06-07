@@ -2,6 +2,8 @@ package com.codewithtimzowen.earthquakes;
 
 public class EarthQuakes {
 
+    // TODO
+    // implement the UI updater and Onpost progress
     private final String mMagnitude;
     private final String mLocation;
     private final String mDate;
