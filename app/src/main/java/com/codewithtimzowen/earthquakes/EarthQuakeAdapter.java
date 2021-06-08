@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
 
@@ -38,8 +41,24 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         TextView tvLocation = listItemView.findViewById(R.id.tvLocation);
         tvLocation.setText(currentEarthquake.getmLocation());
 
+        // Get to format the time and date to the correct formatting time:
+        Date dateObject = new Date(currentEarthquake.getmTimeMilliseconds());
+
+        // Find text_view with Time and update the textView
         TextView  tvDate = listItemView.findViewById(R.id.tvDate);
-        tvDate.setText(currentEarthquake.getmDate());
+
+        //format the String to a date format
+        String formattedDate = formatDate(dateObject);
+
+        // display the text in the TextView
+        tvDate.setText(formattedDate);
+
+        // Implement the same as data but for time now
+        TextView tvTime = listItemView.findViewById(R.id.tv_time);
+        String formattedTime = formatTime(dateObject);
+        tvTime.setText(formattedTime);
+
+
 
         return listItemView;
     }
