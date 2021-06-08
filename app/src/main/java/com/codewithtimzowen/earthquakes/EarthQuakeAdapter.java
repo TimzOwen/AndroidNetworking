@@ -59,7 +59,7 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         }
 
         //set the correct color magnitude
-        GradientDrawable magnitudeCircle = (GradientDrawable) magnitudeView.getBackground();
+        GradientDrawable magnitudeCircle = (GradientDrawable) tvMag.getBackground();
 
         //get current Magnitude and pass the int color
         int magnitudeColor = getMagnitudeColor(currentEarthquake.getmMagnitude());
@@ -118,6 +118,7 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
     private int getMagnitudeColor(double magnitude){
         int magnitudeColorResourceId;
         int magnitudeFloor = (int) Math.floor(magnitude);
+
         switch (magnitudeFloor) {
             case 0:
             case 1:
