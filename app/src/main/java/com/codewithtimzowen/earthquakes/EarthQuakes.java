@@ -2,12 +2,12 @@ package com.codewithtimzowen.earthquakes;
 
 public class EarthQuakes {
 
-    private final String mMagnitude;
+    private final double mMagnitude;
     private final String mLocation;
     // Time for the earthquake
     private long mTimeMilliseconds;
 
-    public EarthQuakes(String magnitude, String location, long timeMilliseconds){
+    public EarthQuakes(double magnitude, String location, long timeMilliseconds){
         this.mMagnitude = magnitude;
         this.mLocation = location;
         this.mTimeMilliseconds = timeMilliseconds;
@@ -21,7 +21,7 @@ public class EarthQuakes {
         return mLocation;
     }
 
-    public String getmMagnitude() {
+    public double getmMagnitude() {
         return mMagnitude;
     }
 }

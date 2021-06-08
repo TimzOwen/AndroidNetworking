@@ -25,7 +25,7 @@
         android:id="@+id/primary_location"
         android:layout_width="0dp"
         android:layout_weight="1"
-        tools:text="San Fransisco, CA"
+        tools:text="San Fransisco, CA "
         android:layout_height="wrap_content"/>
 
     <TextView

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +38,10 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_layout,parent,false);
         }
         TextView tvMag = listItemView.findViewById(R.id.tvMag);
-        tvMag.setText(currentEarthquake.getmMagnitude());
+        //format the magnitude to show the String 1.dp
+        String formattedMagnitude = formatMagnitude(currentEarthquake.getmMagnitude());
+        //set the textview to display
+        tvMag.setText(formattedMagnitude);
 
         String originalLocation = currentEarthquake.getmLocation();
         String primaryLocation;
@@ -89,6 +93,12 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
     private String formatTime(Date dateObject){
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm:a");
         return timeFormat.format(dateObject);
+    }
+
+    //create a formatted String to convert the desired text
+    private String formatMagnitude(double magnitude){
+        DecimalFormat magnitudeFormat = new DecimalFormat("0.0");
+        return magnitudeFormat.format(magnitude);
     }
 
 
