@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -58,8 +59,18 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         String formattedTime = formatTime(dateObject);
         tvTime.setText(formattedTime);
 
-
-
         return listItemView;
+    }
+
+    //create Method to format String
+    private String formatDate(Date dateObject){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd ,yyyy");
+        return dateFormat.format(dateObject);
+    }
+
+    // create a method to format the Time
+    private String formatTime(Date dateObject){
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm:a");
+        return timeFormat.format(dateObject);
     }
 }
