@@ -5,7 +5,7 @@ public class EarthQuakes {
     private final double mMagnitude;
     private final String mLocation;
     // Time for the earthquake
-    private long mTimeMilliseconds;
+    private final long mTimeMilliseconds;
 
     public EarthQuakes(double magnitude, String location, long timeMilliseconds){
         this.mMagnitude = magnitude;
