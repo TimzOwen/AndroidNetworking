@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +37,7 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         TextView tvMag = listItemView.findViewById(R.id.tvMag);
         tvMag.setText(currentEarthquake.getmMagnitude());
 
-        TextView tvLocation = listItemView.findViewById(R.id.tvLocation);
+        TextView tvLocation = listItemView.findViewById(R.id.location_offset);
         tvLocation.setText(currentEarthquake.getmLocation());
 
         // Get to format the time and date to the correct formatting time:
@@ -73,4 +71,6 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm:a");
         return timeFormat.format(dateObject);
     }
+
+
 }
