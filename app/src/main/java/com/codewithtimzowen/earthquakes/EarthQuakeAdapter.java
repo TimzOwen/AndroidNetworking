@@ -68,6 +68,8 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuakes> {
         magnitudeCircle.setColor(magnitudeColor);
 
 
+
+
         TextView primaryLocationView = (TextView) listItemView.findViewById(R.id.primary_location);
         primaryLocationView.setText(primaryLocation);
 
