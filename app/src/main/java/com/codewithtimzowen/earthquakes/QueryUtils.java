@@ -57,7 +57,8 @@ public final class QueryUtils {
                 // Find individual Strings
                 String magnitude = properties.getString("mag");
                 String location = properties.getString("place");
-                String time = properties.getString("time");
+                //get time in a human readble format
+                long time  = properties.getLong("time");
 
                 //create a new object from the three strings
                 EarthQuakes earthQuakes = new EarthQuakes(magnitude,location,time);
