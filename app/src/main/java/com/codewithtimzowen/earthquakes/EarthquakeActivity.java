@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -56,10 +55,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         });
 
-        // Start the AsyncTask to fetch the earthquake data
-        EarthquakeAsyncTask task = new EarthquakeAsyncTask();
-        task.execute(USGS_REQUEST_URL);
-
         // Get a reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();
 
@@ -69,15 +64,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
         
     }
-
-    // implement the loader methods
-
     @Override
     public Loader<List<EarthQuakes>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
         return new EarthquakeLoader(this, USGS_REQUEST_URL);
     }
-
     @Override
     public void onLoadFinished(Loader<List<EarthQuakes>> loader, List<EarthQuakes> earthquakes) {
         // Clear the adapter of previous earthquake data
@@ -88,14 +79,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         if (earthquakes != null && !earthquakes.isEmpty()) {
             mAdapter.addAll(earthquakes);
         }
-
     }
-
     @Override
     public void onLoaderReset(Loader<List<EarthQuakes>> loader) {
         // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
-
     }
 
 }

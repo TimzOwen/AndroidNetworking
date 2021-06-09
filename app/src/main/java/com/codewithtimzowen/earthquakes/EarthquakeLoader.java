@@ -1,12 +1,14 @@
 package com.codewithtimzowen.earthquakes;
 
+import android.content.AsyncTaskLoader;
 import android.content.Context;
-
-import androidx.loader.content.AsyncTaskLoader;
 
 import java.util.List;
 
-// Laod list of earthquakes by using AsyncTask to perform network request
+/**
+ * Loads a list of earthquakes by using an AsyncTask to perform the
+ * network request to the given URL.
+ */
 public class EarthquakeLoader extends AsyncTaskLoader<List<EarthQuakes>> {
 
     /** Tag for log messages */
@@ -44,9 +46,4 @@ public class EarthquakeLoader extends AsyncTaskLoader<List<EarthQuakes>> {
         List<EarthQuakes> earthquakes = QueryUtils.fetchEarthquakeData(mUrl);
         return earthquakes;
     }
-
-
-
-
-
 }
