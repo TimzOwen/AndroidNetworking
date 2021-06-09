@@ -2,7 +2,10 @@ package com.codewithtimzowen.earthquakes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,7 +47,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         //use arrayAdapter to bind the list to the list in the layout and pass in simple android layout for the display
-        mAdapter = new EarthQuakeAdapter(this,new ArrayList<EarthQuakes>());
+        mAdapter = new EarthQuakeAdapter(this, new ArrayList<EarthQuakes>());
 
         earthquakeListView.setAdapter(mAdapter);
 
@@ -64,6 +67,13 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         });
 
+        //check network connectivity
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        //get current active data network
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+
         // Get a reference to the LoaderManager, in order to interact with loaders.
         LoaderManager loaderManager = getLoaderManager();
 
@@ -71,6 +81,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
         // because this activity implements the LoaderCallbacks interface).
         loaderManager.initLoader(EARTHQUAKE_LOADER_ID, null, this);
+    }
         
     }
     @Override
