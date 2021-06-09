@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
     private EarthQuakeAdapter mAdapter;
+    private static final String LOG_TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(LOG_TAG, "Test: OnCreated Method Called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
