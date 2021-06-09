@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +80,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     }
     @Override
     public void onLoadFinished(Loader<List<EarthQuakes>> loader, List<EarthQuakes> earthquakes) {
+
+        //progress bar
+        View loadingIndicator = findViewById(R.id.loading_indicator);
+        loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No earthquakes found."
         mEmptyStateTextView.setText(R.string.no_earthquakes);
