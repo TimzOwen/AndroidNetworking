@@ -60,8 +60,11 @@ public final class QueryUtils {
                 //get time in a human readble format
                 long time  = properties.getLong("time");
 
+                //extract URL for Intent swtiching:
+                String url = properties.getString("url");
+
                 //create a new object from the three strings
-                EarthQuakes earthQuakes = new EarthQuakes(magnitude,location,time);
+                EarthQuakes earthQuakes = new EarthQuakes(magnitude,location,time,url);
                 earthquakes.add(earthQuakes);
             }
 
