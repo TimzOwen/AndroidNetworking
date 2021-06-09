@@ -43,13 +43,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(websiteIntent);
 
         });
+
+        // Start the AsyncTask to fetch the earthquake data
+        EarthquakeAsyncTask task = new EarthquakeAsyncTask();
+        task.execute(USGS_REQUEST_URL);
         
     }
     private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<EarthQuakes>> {
 
         @Override
         protected List<EarthQuakes> doInBackground(String... urls) {
+            // Don't perform the request if there are no URLs, or the first URL is null.
+            if (urls.length < 1 || urls[0] == null) {
+                return null;
+            }
 
+            List<EarthQuakes> result = QueryUtils.fetchEarthquakeData(urls[0]);
+            return result;
         }
 
         @Override
