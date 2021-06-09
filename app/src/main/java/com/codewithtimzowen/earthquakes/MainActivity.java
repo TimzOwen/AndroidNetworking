@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
+    private EarthQuakeAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,21 +21,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //find the list view ID
-        ListView lv = findViewById(R.id.list_view);
-
-
-        //call the Query Utils to map the earthquakes
-        ArrayList<EarthQuakes> earthquakes = QueryUtils.extractEarthquakes();
+        ListView earthquakeListView = findViewById(R.id.list_view);
 
         //use arrayAdapter to bind the list to the list in the layout and pass in simple android layout for the display
-        final EarthQuakeAdapter earthQuakeAdapter = new EarthQuakeAdapter(this,earthquakes);
+        mAdapter = new EarthQuakeAdapter(this,new ArrayList<EarthQuakes>());
 
-        lv.setAdapter(earthQuakeAdapter);
+        earthquakeListView.setAdapter(mAdapter);
 
-        lv.setOnItemClickListener((adapterView, view, position, id) -> {
+        earthquakeListView.setOnItemClickListener((adapterView, view, position, id) -> {
 
             //find the current earthquake when clicked
-            EarthQuakes currentEarthquake = earthQuakeAdapter.getItem(position);
+            EarthQuakes currentEarthquake = mAdapter.getItem(position);
 
             // Convert String URL into URI object to pass to intent constructor
             Uri earthquakeUri = Uri.parse(currentEarthquake.getUrl());
@@ -61,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<EarthQuakes> data) {
+            // Clear the adapter of previous earthquake data
+            mAdapter.clear();
+
+            // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
+            // data set. This will trigger the ListView to update.
+            if (data != null && !data.isEmpty()) {
+                mAdapter.addAll(data);
+            }
 
         }
     }
