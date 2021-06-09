@@ -27,5 +27,5 @@ public class EarthQuakes {
         return mMagnitude;
     }
 
-    public String getmUrl(){return mUrl;}
+    public String getUrl(){return mUrl;}
 }
