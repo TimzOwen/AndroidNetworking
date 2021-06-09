@@ -12,6 +12,7 @@ import java.util.List;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
+import android.widget.TextView;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<EarthQuakes>> {
 
@@ -25,14 +26,21 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     private EarthQuakeAdapter mAdapter;
     private static final String LOG_TAG = "MainActivity";
 
+    /** TextView that is displayed when the list is empty */
+    private TextView mEmptyStateTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(LOG_TAG, "Test: OnCreated Method Called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mEmptyStateTextView = findViewById(R.id.empty_view);
+
         //find the list view ID
         ListView earthquakeListView = findViewById(R.id.list_view);
+
+        earthquakeListView.setEmptyView(mEmptyStateTextView);
 
         //use arrayAdapter to bind the list to the list in the layout and pass in simple android layout for the display
         mAdapter = new EarthQuakeAdapter(this,new ArrayList<EarthQuakes>());
@@ -71,6 +79,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     }
     @Override
     public void onLoadFinished(Loader<List<EarthQuakes>> loader, List<EarthQuakes> earthquakes) {
+
+        // Set empty state text to display "No earthquakes found."
+        mEmptyStateTextView.setText(R.string.no_earthquakes);
+
         // Clear the adapter of previous earthquake data
         mAdapter.clear();
 
