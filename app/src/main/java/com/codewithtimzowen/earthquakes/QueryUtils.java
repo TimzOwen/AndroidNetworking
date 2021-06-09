@@ -1,9 +1,11 @@
 package com.codewithtimzowen.earthquakes;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +16,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 
- // Helper methods related to requesting and receiving earthquake data from USGS.
+// Helper methods related to requesting and receiving earthquake data from USGS.
 
 public final class QueryUtils {
 
@@ -41,15 +44,20 @@ public final class QueryUtils {
      * Return a list of {@link EarthQuakes} objects that has been built up from
      * parsing a JSON response.
      */
-    public static ArrayList<EarthQuakes> extractEarthquakes() {
+    public static List<EarthQuakes> extractFeatureFromJson(String earthquakeJSON) {
+
+        //check if JSON String is null or empty then return early
+        if (TextUtils.isEmpty(earthquakeJSON)){
+            return null;
+        }
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        ArrayList<EarthQuakes> earthquakes = new ArrayList<>();
+        List<EarthQuakes> earthquakes = new ArrayList<>();
 
         try {
 
-            // create a Json Object response
-            JSONObject baseJsonObject = new JSONObject(SAMPLE_JSON_RESPONSE);
+            // create a Json Object response of JSON String.
+            JSONObject baseJsonObject = new JSONObject(earthquakeJSON);
 
             //Get the features array
             JSONArray earthquakeArray = baseJsonObject.getJSONArray("features");
@@ -68,7 +76,6 @@ public final class QueryUtils {
                 String location = properties.getString("place");
                 //get time in a human readble format
                 long time  = properties.getLong("time");
-
                 //extract URL for Intent swtiching:
                 String url = properties.getString("url");
 
