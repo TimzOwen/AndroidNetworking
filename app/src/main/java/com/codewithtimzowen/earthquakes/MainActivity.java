@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,8 +12,11 @@ import android.widget.ListView;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         //find the list view ID
         ListView lv = findViewById(R.id.list_view);
+
 
         //call the Query Utils to map the earthquakes
         ArrayList<EarthQuakes> earthquakes = QueryUtils.extractEarthquakes();
@@ -47,9 +52,16 @@ public class MainActivity extends AppCompatActivity {
         });
         
     }
+    private class EarthquakeAsyncTask extends AsyncTask<String, Void, List<EarthQuakes>> {
 
-    // TODO
-    // implement the Do in background Async Task
-    // onProgress update
-    // Genereics--> Strings Void , Event
+        @Override
+        protected List<EarthQuakes> doInBackground(String... urls) {
+
+        }
+
+        @Override
+        protected void onPostExecute(List<EarthQuakes> data) {
+
+        }
+    }
 }
